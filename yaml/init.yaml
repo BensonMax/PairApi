@@ -1,0 +1,5 @@
+title: XXXX接口测试
+host: lfwiseopertest02.hwcloudtest.cn
+port: 8443
+protocol: https://
+header: {account": "sWX458348", "Content-Type": "application/json; charset=UTF-8","secrectKey": "Yzg0MTkyOTBjM2M1NDMyNmFkYjc2MzdlNGRhYjRiOTk=","appID": "app_2017030812000000011"}
