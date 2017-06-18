@@ -17,7 +17,7 @@
 
 ```
 title: XXXX接口测试
-host: lfwiseopertest02.hwcloudtest.cn
+host: baidu.com
 port: 8443
 protocol: https://
 header: {account": "XX", "Content-Type": "application/json; charset=UTF-8","secrectKey": "XXX=","appID": "XX"}
@@ -30,10 +30,10 @@ header: {account": "XX", "Content-Type": "application/json; charset=UTF-8","secr
 **配置用例yaml**
 
 ```
-req: 1001|登录|/wiseoper/login|POST
+req: 1001|登录|/XX/login|POST
 param:
   - name: 0|swx458348|str|rep|dict&1|swx4583481|str|rep|dic&3|rep|dict
-  - wiseoper: 0|fnNoaWt1bjE5ODk|str|rep|dict&1|fnNoaWt1bjE5ODk1|str|rep|dic&3|rep|dict
+  - XX: 0|fnNoaWt1bjE5ODk|str|rep|dict&1|fnNoaWt1bjE5ODk1|str|rep|dic&3|rep|dict
   
 #error: 0正常，1错误的值，2类型错误,3不传字段，4后面再扩展如最大，最小
 #rep：后面是检查点，支持
