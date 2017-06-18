@@ -1,5 +1,6 @@
 from Base import BaseAsy
 from Base.BaseReqestParam import readParam, pairPatchParam, readPictParam, readReq, paramsFilter, requestHead
+from Base.BaseStatistics import writeInfo
 from Base.BaseYaml import getYam
 from Base.BaseRequest import request
 import os
@@ -30,15 +31,24 @@ class Login:
         print(self.head)
         # self.head = requestHead(PATH("../yaml/init.yaml"))  # protocol ,header,port,host,title
 
-    '''
-    发请求
-    '''
 
-    def operate(self):
+    def operate(self,path):
+        '''
+        发请求
+        :param path: 统计的path
+        :return: 
+        '''
+        data = []
         for item in self.getParam:
+            app = {}
             param = paramsFilter(item) # 过滤接口,如果有其他加密，可以自行扩展
             f = request(header=self.head["header"], host=self.head["host"], protocol=self.head["protocol"], port=self.head["port"])
+            app["url"] = self.readReq[2]
+            app["param"] = param
+            app["method"] = self.readReq[3]
             if self.readReq[3] == "POST":
-                BaseAsy.asyn(f.post(self.readReq[2], param=param))
+                app["result"] = BaseAsy.asyn(f.post(self.readReq[2], param=param))
             else:
-                BaseAsy.asyn(f.get(self.readReq[2], param=param))
+                app["result"] = BaseAsy.asyn(f.get(self.readReq[2], param=param))
+            data.append(app)
+        writeInfo(data, path)

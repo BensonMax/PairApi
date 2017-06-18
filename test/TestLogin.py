@@ -11,4 +11,4 @@ class LoginTest(unittest.TestCase):
 
     def testLogin(self):
         login = Login(path=PATH("../yaml/login.yaml"), initPath=PATH("../yaml/init.yaml"))
-        login.operate()
+        login.operate(PATH("../Log/info.log"))

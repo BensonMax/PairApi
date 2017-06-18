@@ -8,9 +8,9 @@ PATH = lambda p: os.path.abspath(
 
 def init():
 
-    mkFile(PATH("../Log/param.log"))
-    mkFile(PATH("../Log/paramRequest.log"))
+    mkFile(PATH("../Log/info.log"))
+    time.sleep(1)
+
 
 def destroy():
-    removeFile(PATH("../Log/param.log"))
-    removeFile(PATH("../Log/paramRequest.log"))
+    removeFile(PATH("../Log/info.log"))

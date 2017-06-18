@@ -12,9 +12,7 @@ def requestHead(path):
     请求头
     :return: 
     '''
-    # print(getYam(PATH("../yaml/init.yaml")))
     return getYam(path)
-    # return getYam(path)
 
 
 def paramsFilter(params):
