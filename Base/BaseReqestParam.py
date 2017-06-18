@@ -27,7 +27,7 @@ def paramsFilter(params):
     result = {}
     for wap_key in params:
         for son_key in params[wap_key]:
-            if params[wap_key]["error"] == "0" or params[wap_key]["error"] == "1" or params[wap_key]["error"] == "2":
+            if params[wap_key]["error"] == "0" or params[wap_key]["error"] == "1" or params[wap_key]["error"] == "2": # 过滤和处理相关请求参数
                 result[wap_key] = changeFormat(params[wap_key]["type"], params[wap_key]["input"])
             break
     return result
@@ -54,7 +54,6 @@ def readReq(param):
     :param param: 
     :return: 
     '''
-    # req = getYam(PATH("../yaml/login.yaml"))["req"]
     return param.split("|") # 1 用例id,2 用例介绍,3 url
 
 def readParam(param):
@@ -64,16 +63,10 @@ def readParam(param):
     param2:..
     :return: list
     '''
-    # param = {'param': [{'ip': '0|2.2.2|str|rep|dict&1|333|int|rep|dict&2|""|str|rep|dict&3|rep|dict&4|rep|dict'},
-    #                    {
-    #                        'format2': '0|1111|str|rep|dict&1|444.01|float|rep|dict&2|""|str|rep|dict&3|rep|dict&4|rep|dict'}],
-    #          'req': '1001|登录|url'}
     result = []
     _param2 = ""
-    # for item in param["param"]:
     for item in param:
         for key in item:
-            print(item)
             tempParam = item[key].split("&")
             _param = ""
             for tItem in tempParam:
@@ -140,8 +133,6 @@ if __name__ == "__main__":
 
     pairPatchParam(params=result, paramPath=PATH("../Log/param.log"), paramRequestPath=PATH("../Log/paramRequest.log"))
     # time.sleep(1)
-
-
     getParam = readPictParam(paramRequestPath=PATH("../Log/paramRequest.log"))
 
     # t = [{'ip': {'error': '3', 'rep': 'dict'}, 'format2': {'error': '3', 'rep': 'dict'}}, {'ip': {'input': '18.4.255.255', 'type': 'str', 'error': '0', 'rep': 'dict'}, 'format2': {'error': '1', 'rep': 'dict'}}, {'ip': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}, 'format2': {'error': '3', 'rep': 'dict'}}, {'ip': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}, 'format2': {'error': '1', 'rep': 'dict'}}, {'ip': {'error': '4', 'rep': 'dict'}, 'format2': {'error': '1', 'rep': 'dict'}}, {'ip': {'input': '18.4.255.255', 'type': 'str', 'error': '0', 'rep': 'dict'}, 'format2': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}}, {'ip': {'error': '1', 'rep': 'dict'}, 'format2': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}}, {'ip': {'error': '3', 'rep': 'dict'}, 'format2': {'error': '1', 'rep': 'dict'}}, {'ip': {'error': '1', 'rep': 'dict'}, 'format2': {'error': '3', 'rep': 'dict'}}, {'ip': {'error': '4', 'rep': 'dict'}, 'format2': {'error': '3', 'rep': 'dict'}}, {'ip': {'error': '3', 'rep': 'dict'}, 'format2': {'input': '1111', 'type': 'str', 'error': '0', 'rep': 'dict'}}, {'ip': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}, 'format2': {'input': '1111', 'type': 'str', 'error': '0', 'rep': 'dict'}}, {'ip': {'error': '4', 'rep': 'dict'}, 'format2': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}}, {'ip': {'error': '1', 'rep': 'dict'}, 'format2': {'input': '1111', 'type': 'str', 'error': '0', 'rep': 'dict'}}, {'ip': {'input': '18.4.255.255', 'type': 'str', 'error': '0', 'rep': 'dict'}, 'format2': {'error': '3', 'rep': 'dict'}}, {'ip': {'error': '4', 'rep': 'dict'}, 'format2': {'input': '1111', 'type': 'str', 'error': '0', 'rep': 'dict'}}, {'ip': {'error': '1', 'rep': 'dict'}, 'format2': {'error': '1', 'rep': 'dict'}}, {'ip': {'error': '3', 'rep': 'dict'}, 'format2': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}}, {'ip': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}, 'format2': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}}, {'ip': {'input': '18.4.255.255', 'type': 'str', 'error': '0', 'rep': 'dict'}, 'format2': {'input': '1111', 'type': 'str', 'error': '0', 'rep': 'dict'}}]
