@@ -49,13 +49,13 @@ class request():
             print("访问失败")
         return data
 if __name__ == '__main__':
-    url = '/wiseoper/login'
+    url = '/XXX/login'
     # loop = asyncio.get_event_loop()
     # tasks = []
     protocol = "https://"
-    host = "lfwiseopertest02.hwcloudtest.cn"
+    host = "host"
     port= 8443
-    header = {"account": "sWX458348", "Content-Type": "application/json; charset=UTF-8","secrectKey": "Yzg0MTkyOTBjM2M1NDMyNmFkYjc2MzdlNGRhYjRiOTk=","appID": "app_2017030812000000011"}
+    header = {}
     f = request(header=header, host=host, protocol=protocol, port=port)
-    data = {'wiseoper': 'fnNoaWt1bjE5ODk', 'name': 'swx458348'}
+    data = {'XXX': 'XXX', 'name': 'XXX'}
     BaseAsy.asyn(f.post(url, param=data))
