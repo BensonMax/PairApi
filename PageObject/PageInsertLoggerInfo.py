@@ -1,6 +1,5 @@
 from Base import BaseAsy
-from Base.BaseReqestParam import readParam, pairPatchParam, readPictParam, readReq, paramsFilter, requestHead, \
-    writeResultParam
+from Base.BaseReqestParam import readParam, pairPatchParam, readPictParam, readReq, paramsFilter, requestHead
 from Base.BaseStatistics import writeInfo
 from Base.BaseYaml import getYam
 from Base.BaseRequest import request
@@ -11,7 +10,7 @@ PATH = lambda p: os.path.abspath(
 )
 
 
-class Login:
+class InsertLoggerInfo:
     '''
     kwargs: 
     path: 用例文件目录
@@ -45,7 +44,7 @@ class Login:
             param = paramsFilter(item) # 过滤接口,如果有其他加密，可以自行扩展
             f = request(header=self.head["header"], host=self.head["host"], protocol=self.head["protocol"], port=self.head["port"])
             app["url"] = self.readReq[2]
-            app["param"] = writeResultParam(item)
+            app["param"] = param
             app["method"] = self.readReq[3]
             if self.readReq[3] == "POST":
                 app["result"] = BaseAsy.asyn(f.post(self.readReq[2], param=param))
