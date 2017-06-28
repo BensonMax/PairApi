@@ -1,0 +1,17 @@
+req: 1001|提交工作流|/cloudmanager/api/IUniEA/submitApply|POST
+param:
+  - appId: 0|0003|str|rep|dict&1|0004|str|rep|dic&3|rep|dict&2|0003|int|rep|dict
+  #- applyItemList: 0|fnNoaWt1bjE5ODk|str|rep|dict&1|fnNoaWt1bjE5ODk1|str|rep|dic&3|rep|dict
+  # - apprStepList:
+  # - attachmentList
+  - digest: 0|2491295e0f01ac63403b55b5a059548c9421b5466c71024155b1ff833341ba9f|str|rep|dict&1|2491295e0f01ac63403b55b5a059548c9421b5466c71024155b1ff833341ba9|str|rep|dic&3|rep|dict
+  - resID: 0|settle.menu.settle.generatesettle.query|str|rep|dict&1|settle.menu.settle.generatesettle.query21|str|rep|dic&3|rep|dict
+  - resID0: 0|settle.menu.settle.generatesettle.add|str|rep|dict&1|settle.menu.settle.generatesettle.add121|str|rep|dic&3|rep|dict
+  - submitTime: 0|2017-03-16T16$44$11+08$00|str|rep|dict&1|2017-03-16CCC16$44$11+08$00|str|rep|dic&3|rep|dict
+  - submitter: 0|776|int|rep|dict&1|999|str|rep|dic&3|rep|dict&2|776|str|rep|dict
+  - transactionID: 0|000300000020170627161033000001|str|rep|dict&1|000300000020170627161033000001111|str|rep|dic&3|rep|dict
+#error: 0正常，1错误的值，2类型错误,3不传字段，4后面再扩展如最大，最小
+#rep：后面是检查点，支持
+#{} ,对应key为Dict
+#{[]},对应key为DictList
+#{[{},{}]} 对应key为DictListDict

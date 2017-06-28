@@ -1,6 +1,6 @@
 import os
 import unittest
-from PageObject.PageLogin import Login
+from PageObject.PageLogin1 import Login
 
 PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)

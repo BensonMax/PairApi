@@ -26,7 +26,7 @@ def paramsFilter(params):
     for wap_key in params:
         for son_key in params[wap_key]:
             if params[wap_key]["error"] == "0" or params[wap_key]["error"] == "1" or params[wap_key]["error"] == "2": # 过滤和处理相关请求参数
-                result[wap_key] = changeFormat(params[wap_key]["type"], params[wap_key]["input"])
+                result[wap_key] = changeFormat(params[wap_key]["type"], params[wap_key]["input"].replace("$", ":"))
                 # result["info"] = writeErrorInfo(params[wap_key]["error"], params[wap_key]["input"])
             break
     return result
@@ -154,15 +154,15 @@ def pairPatchParam(**kwargs):
 if __name__ == "__main__":
     writeResultParam("")
     # requestHead()
-    # loginY = getYam(PATH("../yaml/login.yaml"))
-    #
-    # result = readParam(loginY["param"])
-    #
-    # pairPatchParam(params=result, paramPath=PATH("../Log/param.log"), paramRequestPath=PATH("../Log/paramRequest.log"))
-    # # time.sleep(1)
-    # getParam = readPictParam(paramRequestPath=PATH("../Log/paramRequest.log"))
-    #
-    # # t = [{'ip': {'error': '3', 'rep': 'dict'}, 'format2': {'error': '3', 'rep': 'dict'}}, {'ip': {'input': '18.4.255.255', 'type': 'str', 'error': '0', 'rep': 'dict'}, 'format2': {'error': '1', 'rep': 'dict'}}, {'ip': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}, 'format2': {'error': '3', 'rep': 'dict'}}, {'ip': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}, 'format2': {'error': '1', 'rep': 'dict'}}, {'ip': {'error': '4', 'rep': 'dict'}, 'format2': {'error': '1', 'rep': 'dict'}}, {'ip': {'input': '18.4.255.255', 'type': 'str', 'error': '0', 'rep': 'dict'}, 'format2': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}}, {'ip': {'error': '1', 'rep': 'dict'}, 'format2': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}}, {'ip': {'error': '3', 'rep': 'dict'}, 'format2': {'error': '1', 'rep': 'dict'}}, {'ip': {'error': '1', 'rep': 'dict'}, 'format2': {'error': '3', 'rep': 'dict'}}, {'ip': {'error': '4', 'rep': 'dict'}, 'format2': {'error': '3', 'rep': 'dict'}}, {'ip': {'error': '3', 'rep': 'dict'}, 'format2': {'input': '1111', 'type': 'str', 'error': '0', 'rep': 'dict'}}, {'ip': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}, 'format2': {'input': '1111', 'type': 'str', 'error': '0', 'rep': 'dict'}}, {'ip': {'error': '4', 'rep': 'dict'}, 'format2': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}}, {'ip': {'error': '1', 'rep': 'dict'}, 'format2': {'input': '1111', 'type': 'str', 'error': '0', 'rep': 'dict'}}, {'ip': {'input': '18.4.255.255', 'type': 'str', 'error': '0', 'rep': 'dict'}, 'format2': {'error': '3', 'rep': 'dict'}}, {'ip': {'error': '4', 'rep': 'dict'}, 'format2': {'input': '1111', 'type': 'str', 'error': '0', 'rep': 'dict'}}, {'ip': {'error': '1', 'rep': 'dict'}, 'format2': {'error': '1', 'rep': 'dict'}}, {'ip': {'error': '3', 'rep': 'dict'}, 'format2': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}}, {'ip': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}, 'format2': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}}, {'ip': {'input': '18.4.255.255', 'type': 'str', 'error': '0', 'rep': 'dict'}, 'format2': {'input': '1111', 'type': 'str', 'error': '0', 'rep': 'dict'}}]
-    # for item in getParam:
-    #     print("----------")
-    #     print(paramsFilter(item))
+    loginY = getYam(PATH("../yaml/submitApply.yaml"))
+
+    result = readParam(loginY["param"])
+
+    pairPatchParam(params=result, paramPath=PATH("../Log/param.log"), paramRequestPath=PATH("../Log/paramRequest.log"))
+    # time.sleep(1)
+    getParam = readPictParam(paramRequestPath=PATH("../Log/paramRequest.log"))
+
+    # t = [{'ip': {'error': '3', 'rep': 'dict'}, 'format2': {'error': '3', 'rep': 'dict'}}, {'ip': {'input': '18.4.255.255', 'type': 'str', 'error': '0', 'rep': 'dict'}, 'format2': {'error': '1', 'rep': 'dict'}}, {'ip': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}, 'format2': {'error': '3', 'rep': 'dict'}}, {'ip': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}, 'format2': {'error': '1', 'rep': 'dict'}}, {'ip': {'error': '4', 'rep': 'dict'}, 'format2': {'error': '1', 'rep': 'dict'}}, {'ip': {'input': '18.4.255.255', 'type': 'str', 'error': '0', 'rep': 'dict'}, 'format2': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}}, {'ip': {'error': '1', 'rep': 'dict'}, 'format2': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}}, {'ip': {'error': '3', 'rep': 'dict'}, 'format2': {'error': '1', 'rep': 'dict'}}, {'ip': {'error': '1', 'rep': 'dict'}, 'format2': {'error': '3', 'rep': 'dict'}}, {'ip': {'error': '4', 'rep': 'dict'}, 'format2': {'error': '3', 'rep': 'dict'}}, {'ip': {'error': '3', 'rep': 'dict'}, 'format2': {'input': '1111', 'type': 'str', 'error': '0', 'rep': 'dict'}}, {'ip': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}, 'format2': {'input': '1111', 'type': 'str', 'error': '0', 'rep': 'dict'}}, {'ip': {'error': '4', 'rep': 'dict'}, 'format2': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}}, {'ip': {'error': '1', 'rep': 'dict'}, 'format2': {'input': '1111', 'type': 'str', 'error': '0', 'rep': 'dict'}}, {'ip': {'input': '18.4.255.255', 'type': 'str', 'error': '0', 'rep': 'dict'}, 'format2': {'error': '3', 'rep': 'dict'}}, {'ip': {'error': '4', 'rep': 'dict'}, 'format2': {'input': '1111', 'type': 'str', 'error': '0', 'rep': 'dict'}}, {'ip': {'error': '1', 'rep': 'dict'}, 'format2': {'error': '1', 'rep': 'dict'}}, {'ip': {'error': '3', 'rep': 'dict'}, 'format2': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}}, {'ip': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}, 'format2': {'input': '""', 'type': 'str', 'error': '2', 'rep': 'dict'}}, {'ip': {'input': '18.4.255.255', 'type': 'str', 'error': '0', 'rep': 'dict'}, 'format2': {'input': '1111', 'type': 'str', 'error': '0', 'rep': 'dict'}}]
+    for item in getParam:
+        print("----------")
+        print(paramsFilter(item))

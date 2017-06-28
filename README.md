@@ -2,7 +2,7 @@
 全对偶接口生成参数
 
 # 功能 
-* python3.4  asyncio aiohttp 
+* python3.4  多线程
 * unittest参数化
 * objectpage
 * 数据维护用的YMAL
@@ -69,18 +69,35 @@ class Login:
         print(self.head)
         # self.head = requestHead(PATH("../yaml/init.yaml"))  # protocol ,header,port,host,title
 
-    '''
-    发请求
-    '''
+   # 发送请求
+    def request(self, item):
+        app = {}
+        param = paramsFilter(item)  # 过滤接口,如果有其他加密，可以自行扩展
+        print(param)
+        f = request(header=self.head["header"], host=self.head["host"], protocol=self.head["protocol"],
+                    port=self.head["port"])
+        app["url"] = self.readReq[2]
+        app["param"] = writeResultParam(item)
+        app["method"] = self.readReq[3]
+        if self.readReq[3] == "POST":
+            app["result"] = f.post(self.readReq[2], param=param)
+        else:
+            app["result"] = f.get(self.readReq[2], param=param)
+        self.data.append(app)
 
-    def operate(self):
-        for item in self.getParam:
-            param = paramsFilter(item) # 过滤接口,如果有其他加密，可以自行扩展
-            f = request(header=self.head["header"], host=self.head["host"], protocol=self.head["protocol"], port=self.head["port"])
-            if self.readReq[3] == "POST":
-                BaseAsy.asyn(f.post(self.readReq[2], param=param))
-            else:
-                BaseAsy.asyn(f.get(self.readReq[2], param=param))
+    def operate(self, path):
+        '''
+        发请求
+        :param path: 统计的path
+        :return: 
+        '''
+        threads = []
+        for item in range(len(self.getParam)):
+            threads.append(BThread(self.request(self.getParam[item])))
+        for j in range(len(self.getParam)):
+            threads[j].start()
+        for k in range(len(self.getParam)):
+            threads[k].join())
 
 ```
 

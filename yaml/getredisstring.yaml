@@ -1,4 +1,4 @@
-req: 1001|登录|/login|POST
+req: 1001|登录|/wiseoper/login|POST
 param:
   - name: 0|swx458348|str|rep|dict&1|swx4583481|str|rep|dic&3|rep|dict
   - wiseoper: 0|fnNoaWt1bjE5ODk|str|rep|dict&1|fnNoaWt1bjE5ODk1|str|rep|dic&3|rep|dict

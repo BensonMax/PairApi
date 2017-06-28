@@ -22,7 +22,8 @@ class request():
         try:
             response = requests.get(url, params=param, headers=self.req["header"])
             response.encoding = 'UTF-8'
-            data = json.loads(response)
+            if response.status_code == 200:
+                data = json.loads(response.text)
             data["status_code"] = response.status_code
             print(data)
         except asyncio.TimeoutError:
@@ -32,16 +33,11 @@ class request():
         data = {}
         _url = self.req["protocol"] + self.req["host"] + ':' + str(self.req["port"]) + url
         print(_url + " post接口参数为:" + str(param))
-        requests.post(_url,files=None, data=json.dumps(param),  headers=self.req["header"])
-        # response = yield from aiohttp.request('POST', _url, data=json.dumps(param), headers=self.req["header"])
-        # string = (yield from response.read()).decode('utf-8')
-        print(response.status)
-        if response.status == 200:
-            data = json.loads(string)
-        else:
-            print("data fetch failed for")
-            print(response.content, response.status)
-        data["status_code"] = response.status
+        response = requests.post(_url,files=None, data=json.dumps(param),  headers=self.req["header"])
+        response.encoding = 'UTF-8'
+        if response.status_code == 200:
+            data = json.loads(response.text)
+        data["status_code"] = response.status_code
         print(data)
 
         return data
