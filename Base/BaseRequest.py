@@ -20,22 +20,27 @@ class request():
         _url = self.req["protocol"] + self.req["host"] + ":" + str(self.req["port"]) + url
         print(_url +" get请求参数为:"+str(param))
         try:
-            response = requests.get(url, params=param, headers=self.req["header"])
-            response.encoding = 'UTF-8'
-            data = json.loads(response)
-            data["status_code"] = response.status_code
+            response = yield from aiohttp.request("GET", _url, headers=self.req["header"], params=param)
+            string = (yield from response.read()).decode('utf-8')
+            if response.status == 200:
+                data = json.loads(string)
+            else:
+                print("data fetch failed for")
+                print(response.content, response.status)
+            data["status_code"] = response.status
             print(data)
         except asyncio.TimeoutError:
             print("访问失败")
+        except UnicodeDecodeError:
+            print("接口崩溃了")
         return data
     def post(self,url, param):
         data = {}
         _url = self.req["protocol"] + self.req["host"] + ':' + str(self.req["port"]) + url
         print(_url + " post接口参数为:" + str(param))
         requests.post(_url,files=None, data=json.dumps(param),  headers=self.req["header"])
-        # response = yield from aiohttp.request('POST', _url, data=json.dumps(param), headers=self.req["header"])
-        # string = (yield from response.read()).decode('utf-8')
-        print(response.status)
+        response = yield from aiohttp.request('POST', _url, data=json.dumps(param), headers=self.req["header"])
+        string = (yield from response.read()).decode('utf-8')
         if response.status == 200:
             data = json.loads(string)
         else:

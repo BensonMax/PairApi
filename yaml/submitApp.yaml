@@ -1,5 +1,0 @@
-title: XXXX接口测试
-host: 10.22.0.32
-port: 9030
-protocol: http://
-header: {"Content-Type": "application/json; charset=UTF-8"}

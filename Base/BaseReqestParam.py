@@ -56,7 +56,7 @@ def writeErrorInfo(key):
     :return: 
     '''
     param_type = {
-        "0": lambda: "参数正常",
+        "0": lambda: "参数正确",
         "1": lambda: "参数错误",
         "2": lambda: "参数值类型错误",
         "3": lambda: "参数不传"

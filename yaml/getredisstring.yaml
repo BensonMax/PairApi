@@ -1,9 +1,0 @@
-req: 1001|登录|/wiseoper/login|POST
-param:
-  - name: 0|swx458348|str|rep|dict&1|swx4583481|str|rep|dic&3|rep|dict
-  - wiseoper: 0|fnNoaWt1bjE5ODk|str|rep|dict&1|fnNoaWt1bjE5ODk1|str|rep|dic&3|rep|dict
-#error: 0正常，1错误的值，2类型错误,3不传字段，4后面再扩展如最大，最小
-#rep：后面是检查点，支持
-#{} ,对应key为Dict
-#{[]},对应key为DictList
-#{[{},{}]} 对应key为DictListDict

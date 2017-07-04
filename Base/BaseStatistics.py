@@ -11,7 +11,6 @@ def readInfo(path):
             data = []
             print("读取文件错误")
     print("------read-------")
-    print(path)
     print(data)
     return data
 

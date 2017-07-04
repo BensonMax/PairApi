@@ -19,27 +19,23 @@ class request():
         data = {}
         _url = self.req["protocol"] + self.req["host"] + ":" + str(self.req["port"]) + url
         print(_url +" get请求参数为:"+str(param))
-        try:
-            response = requests.get(url, params=param, headers=self.req["header"])
-            response.encoding = 'UTF-8'
-            if response.status_code == 200:
-                data = json.loads(response.text)
-            data["status_code"] = response.status_code
-            print(data)
-        except asyncio.TimeoutError:
-            print("访问失败")
+        response = requests.get(url, params=param, headers=self.req["header"])
+        response.encoding = 'UTF-8'
+        data = json.loads(response.text)
+        data["status_code"] = response.status_code
+        print(data)
         return data
     def post(self,url, param):
-        data = {}
         _url = self.req["protocol"] + self.req["host"] + ':' + str(self.req["port"]) + url
         print(_url + " post接口参数为:" + str(param))
         response = requests.post(_url,files=None, data=json.dumps(param),  headers=self.req["header"])
         response.encoding = 'UTF-8'
-        if response.status_code == 200:
-            data = json.loads(response.text)
+        data = json.loads(response.text)
         data["status_code"] = response.status_code
-        print(data)
 
+        print("-status_code---")
+        print(data["status_code"])
+        print(data)
         return data
 if __name__ == '__main__':
     pass

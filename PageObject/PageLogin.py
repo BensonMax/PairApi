@@ -3,9 +3,9 @@ from Base.BaseReqestParam import readParam, pairPatchParam, readPictParam, readR
     writeResultParam
 from Base.BaseStatistics import writeInfo
 from Base.BaseYaml import getYam
-from Base.BaseRequest import request
+from Base.BaseRequest1 import request
 import os
-
+from Base.BaseThread import BThread
 PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)
 )
@@ -31,25 +31,38 @@ class Login:
         self.head = requestHead(kwargs["initPath"]) # initPath 请求头准备
         print(self.head)
         # self.head = requestHead(PATH("../yaml/init.yaml"))  # protocol ,header,port,host,title
+        self.data = []
 
+    # 发送请求
+    def request(self, item):
+        app = {}
+        param = paramsFilter(item)  # 过滤接口,如果有其他加密，可以自行扩展
+        print(param)
+        f = request(header=self.head["header"], host=self.head["host"], protocol=self.head["protocol"],
+                    port=self.head["port"])
+        app["url"] = self.readReq[2]
+        app["param"] = writeResultParam(item)
+        app["method"] = self.readReq[3]
+        if self.readReq[3] == "POST":
+            app["result"] = f.post(self.readReq[2], param=param)
+        else:
+            app["result"] = f.get(self.readReq[2], param=param)
+        self.data.append(app)
 
-    def operate(self,path):
+    def operate(self, path):
         '''
         发请求
         :param path: 统计的path
         :return: 
         '''
-        data = []
-        for item in self.getParam:
-            app = {}
-            param = paramsFilter(item) # 过滤接口,如果有其他加密，可以自行扩展
-            f = request(header=self.head["header"], host=self.head["host"], protocol=self.head["protocol"], port=self.head["port"])
-            app["url"] = self.readReq[2]
-            app["param"] = writeResultParam(item)
-            app["method"] = self.readReq[3]
-            if self.readReq[3] == "POST":
-                app["result"] = BaseAsy.asyn(f.post(self.readReq[2], param=param))
-            else:
-                app["result"] = BaseAsy.asyn(f.get(self.readReq[2], param=param))
-            data.append(app)
-        writeInfo(data, path)
+        threads = []
+        print("------------------")
+        print(self.getParam)
+        for item in range(len(self.getParam)):
+            print(item)
+            threads.append(BThread(self.request(self.getParam[item])))
+        for j in range(len(self.getParam)):
+            threads[j].start()
+        for k in range(len(self.getParam)):
+            threads[k].join()
+        writeInfo(self.data, path)
