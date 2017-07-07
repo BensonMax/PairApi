@@ -20,21 +20,21 @@ class request():
         _url = self.req["protocol"] + self.req["host"] + ":" + str(self.req["port"]) + url
         print(_url +" get请求参数为:"+str(param))
         response = requests.get(url, params=param, headers=self.req["header"])
-        response.encoding = 'UTF-8'
-        data = json.loads(response.text)
+        if len(response.text) > 0:
+            response.encoding = 'UTF-8'
+            data = json.loads(response.text)
         data["status_code"] = response.status_code
         print(data)
         return data
     def post(self,url, param):
+        data = {}
         _url = self.req["protocol"] + self.req["host"] + ':' + str(self.req["port"]) + url
         print(_url + " post接口参数为:" + str(param))
         response = requests.post(_url,files=None, data=json.dumps(param),  headers=self.req["header"])
-        response.encoding = 'UTF-8'
-        data = json.loads(response.text)
+        if len(response.text) > 0:
+            response.encoding = 'UTF-8'
+            data = json.loads(response.text)
         data["status_code"] = response.status_code
-
-        print("-status_code---")
-        print(data["status_code"])
         print(data)
         return data
 if __name__ == '__main__':

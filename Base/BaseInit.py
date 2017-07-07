@@ -7,7 +7,7 @@ PATH = lambda p: os.path.abspath(
 )
 
 def init():
-
+    # destroy()
     mkFile(PATH("../Log/info.log"))
     time.sleep(1)
 

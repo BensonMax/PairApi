@@ -141,7 +141,8 @@ if __name__ == '__main__':
 
 
 
-# 结果执行过程
+# 结果执行过程1 
+
 ```
 https://XXX post接口参数为:...
 Task ret: {'status_code': 409}
@@ -156,8 +157,10 @@ https:/...r/login post接口参数为:{'name': 'XXX', 'pwd': 'XXX'}
 
 ```
 
+![](Img/report.PNG)
+
+
 # 其他
-* 后续会加上统计报告
 * 后续加上检查点的检查
 
 

@@ -1,5 +1,5 @@
 title: XXXX接口测试
-host: XXXX
+host: XXX
 port: 5555
 protocol: http://
-header: {account": "XXX", "Content-Type": "application/json; charset=UTF-8","secrectKey": "XXXX=","appID": "XXX"}
+header: {account": "XXX", "Content-Type": "application/json; charset=UTF-8","secrectKey": "Yzg0MTkyOTBjM2M1NDMyNmFkYjc2MzdlNGRhYjRiOTk=","appID": "app_2017030812000000011"}

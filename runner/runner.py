@@ -1,6 +1,10 @@
 import unittest
 from datetime import datetime
+
+import xlsxwriter
+
 from Base.BaseInit import *
+from Base.BaseReport import OperateReport
 from Base.BaseRunner import ParametrizedTestCase
 # from Base.BaseStatistics import readInfo
 from Base.BaseStatistics import readInfo
@@ -29,13 +33,18 @@ def runnerCase():
     starttime = datetime.now()
     init()
     suite = unittest.TestSuite()
-    # suite.addTest(ParametrizedTestCase.parametrize(SubmitApplyTest))
+    suite.addTest(ParametrizedTestCase.parametrize(LoginTest))
     suite.addTest(ParametrizedTestCase.parametrize(SubmitExecResultTest))
+    suite.addTest(ParametrizedTestCase.parametrize(SendEmailTest))
     unittest.TextTestRunner(verbosity=2).run(suite)
     endtime = datetime.now()
     print(u"花费："+str((endtime - starttime).seconds) + "秒")
 
-    # readInfo(PATH("../Log/info.pickle"))
+    info = readInfo(PATH("../Log/info.log"))
+    workbook = xlsxwriter.Workbook('report.xlsx')
+    worksheet = workbook.add_worksheet("接口测试")
+    re = OperateReport(wd=workbook)
+    re.report(worksheet, data=info)
     destroy()
 def conselog():
     result = []
@@ -574,3 +583,4 @@ def conselog():
 if __name__ == '__main__':
     runnerCase()
     # conselog()
+

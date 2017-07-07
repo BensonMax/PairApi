@@ -1,0 +1,6 @@
+req: 1001|提交执行结果|/cloudmanager/api/IUniEA/submitExecResult|POST
+param:
+  - digest: 0|04c5235c635d6911ba29314712137ae3e717525096cda426e48656c336667409|str|rep|dict&1|2491295e0f01ac63403b55b5a059548c9421b5466c71024155b1ff833341ba9|str|rep|dic&3|rep|dict
+  - transactionID: 0|000300000020170629200214000001|str|rep|dict&1|0003000000201706281437530000011|str|rep|dic&3|rep|dict
+  - resultItemList: 1|"111"|str|rep|dict&3|rep|dict
+  - appId: 0|0003|str|rep|dict&1|0004|str|rep|dic&3|rep|dict&2|0003|int|rep|dict

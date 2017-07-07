@@ -1,0 +1,11 @@
+req: 1001|发送邮件|/email/sendEmail|POST
+param:
+  - toStr: 0|shikun4@XX.com|str|rep|dict&1|shikun0@XXX.com|str|rep|dic&3|rep|dict
+  - ccStr: 0|yushuai5@XXX.com|str|rep|dict&1|yushuai51@XXX.com|str|rep|dic&3|rep|dict
+  - subject: 0|111subject|str|rep|dict&3|rep|dict
+  - content: 0|222content|str|rep|dict&3|rep|dict
+  - sendBy: 0|test my msg|str|rep|dict&3|rep|dict
+  - sourceType: 0|121|str|rep|dict&3|rep|dict
+  - sourceId: 0|1234|int|rep|dict&3|rep|dict&2|1234|str|rep|dict
+
+   #error: 0正常，1错误的值，2类型错误,3不传字段

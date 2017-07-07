@@ -73,6 +73,7 @@ def writeResultParam(data):
     for item in data:
         data[item]["info"] = item + writeErrorInfo(data[item]["error"])
         data[item].pop("error")
+        # data[item].pop("dict")
     return data
 def readReq(param):
     '''
@@ -90,7 +91,8 @@ def readParam(param):
     :return: list
     '''
     result = []
-    _param2 = ""
+    result1 = []
+    # _param2 = ""
     for item in param:
         for key in item:
             tempParam = item[key].split("&")
@@ -98,14 +100,51 @@ def readParam(param):
             for tItem in tempParam:
                 tiParam = tItem.split("|")
                 if len(tiParam) == 5:
+
                     _param = _param + "," + key + ":error:" + tiParam[0] + ":input:" + tiParam[1] + ":type:" + tiParam[
                         2] + ":" + tiParam[3] + ":" + tiParam[4]
                 else:
                     _param = _param + "," + key + ":error:" + tiParam[0] + ":" + tiParam[1] + ":" + tiParam[2]
-            _param2 = _param2 + "," + _param
+                if tiParam[0] == "0":
+                    temp = {}
+                    temp[key] = tiParam[1]
+                    temp["error"] = tiParam[0]
+                    result1.append(temp)
+
+            # _param2 = _param2 + "," + _param
+
             result.append(key + ":"+_param[1:])
             break
+    print(result1)
     return result
+
+
+def readParamRight(param):
+    '''
+    读取准备正常请求参数
+    param1:...
+    param2:..
+    :return: list
+    '''
+    result1 = []
+    resdict = {}
+    for item in param:
+        for key in item:
+            tempParam = item[key].split("&")
+            for tItem in tempParam:
+                tiParam = tItem.split("|")
+                if tiParam[0] == "0":
+                    temp = {}
+                    temp[key] = tiParam[1]
+                    result1.append(temp)
+            # break
+    for item in result1:
+        resdict.update(item) # 合并多个dict
+    print("-----resdict---------")
+    print(resdict)
+
+    return resdict
+
 
 
 def readPictParam(paramRequestPath):

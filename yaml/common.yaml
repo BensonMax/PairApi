@@ -1,0 +1,4 @@
+host: xxx
+port: 8080
+protocol: http://
+header: { "Content-Type": "application/json; charset=UTF-8"}
